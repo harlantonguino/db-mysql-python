@@ -1,0 +1,42 @@
+mysql db - railway server
+
+crear una instacia de mysql en railway
+https://railway.app/
+
+url para acceder a la base de datos
+mysql://root:aAkKgEemjdDubcojVPOjQOluxgdvwDKp@roundhouse.proxy.rlwy.net:36214/railway
+
+host=roundhouse.proxy.rlwy.net
+port=36214
+user=root
+password=aAkKgEemjdDubcojVPOjQOluxgdvwDKp
+
+$pip install mysqlclient
+$pip install sqlalchemy
+
+engine: depende de la base de datos a conectar: en este caso mysql db, mysqlclient conector
+https://docs.sqlalchemy.org/en/20/core/engines.html
+
+es posible realizar peticiones con pandas: pd.to_sql, pd.read_sql #verificar documentacion pandas-sqlalchemy
+enviar y recibir dataframes a una, o desde una tabla 
+
+si se requiere hacer otras consultas a la base de datos usar:
+from sqlalchemy.sql import text 
+con = engine.connect()
+res = con.execute(text('select * from tableOne'))
+df = pd.DataFrame(res.fetchall())
+
+al finalizar cierra la conexion con la base de datos:
+cnn.close()
+
+
+paginas relacionadas
+https://www.datacamp.com/tutorial/sqlalchemy-tutorial-examples 
+https://www.geeksforgeeks.org/how-to-execute-raw-sql-in-sqlalchemy/ https://www.atlassian.com/data/notebook/how-to-execute-raw-sql-in-sqlalchemy
+
+videos relacionados
+https://youtu.be/eEVG-A4R9WU?si=PtkOFJyl6EKDPwOx 
+https://youtu.be/Wt6DKHLR_ww?si=ru4zbi3G_Rs8Ppni 
+https://youtu.be/TMj6RO2hjLc?si=lIOQ8iycJG2MZHgY 
+
+
